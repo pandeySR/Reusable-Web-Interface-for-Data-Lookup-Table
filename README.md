@@ -47,4 +47,39 @@ Before compiling and running:
 
 -	Assign your lookup table name in the class, where indicated by myDtName = 'your data lookup table'. See screenshot above.
 
-✅ ### Compile both the class and the CSP page to finalize the setup.
+## ✅ Compile both the class and the CSP page to finalize the setup.
+
+### 🧪 Testing the Application
+
+#### Adding Records
+
+- Enter the key and corresponding key-value pair in the form fields.  
+- Click **Add Record** to insert the data into the lookup table.
+
+**Screenshot 1: Adding Records**  
+![Adding Records Screenshot](Images/AddRecord1.png)
+
+![Adding Records Screenshot](Images/AddRecord2.png)
+
+####  Updating Records
+-	Select an existing record and modify the key-value pair as needed.
+  
+![Update Records Screenshot](Images/UpdateRecord1.png)
+
+-  Click Update to save changes. 
+Example: Updating "CT Scan Neck" to "CT Scan Head".
+
+![Update Records Screenshot](Images/UpdateRecord2.png)
+
+#### Deleting Records
+-	Select the record to delete (166 – MRI)
+
+![Delete Records Screenshot](Images/DeleteRecord1.png)
+
+-	Click the Delete button to remove the record from the lookup table.
+Example: Deleting "166 - MRI".
+
+![Delete Records Screenshot](Images/DeleteRecord2.png)
+
+
+
