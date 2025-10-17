@@ -101,5 +101,4 @@ To verify the records in your lookup table:
 
 This reusable web interface and class provide a simple yet effective way to manage **Data Lookup Tables** in **HealthConnect**, enhancing both efficiency and flexibility. By empowering end-users with controlled access, it reduces the administrative overhead traditionally associated with lookup table maintenance.
 
-💬 **Thank you for using this solution!**  
-If you have any questions or require further assistance, please feel free to reach out.
+💬 **Thank you 
