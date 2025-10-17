@@ -44,3 +44,7 @@ Before compiling and running:
 - Ensure the class name in the code matches your custom class name.
 
   ![ClassDtlookup](Images/ClassDtLookup.png)
+
+-	Assign your lookup table name in the class, where indicated by myDtName = 'your data lookup table'. See screenshot above.
+
+✅ ### Compile both the class and the CSP page to finalize the setup.
