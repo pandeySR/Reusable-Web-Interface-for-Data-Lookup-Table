@@ -39,7 +39,7 @@ Before compiling and running:
 
 - Replace the placeholder for your **Data Lookup Table** name on the web page (indicated by the red box in the screenshot below) with your actual lookup table name.
 
-![Datalookup](Images/DataLookup.png)
+![Datalookup](Images/DataLookup.PNG)
 
 - Ensure the class name in the code matches your custom class name.
 
@@ -54,32 +54,52 @@ Before compiling and running:
 #### Adding Records
 
 - Enter the key and corresponding key-value pair in the form fields.  
-- Click **Add Record** to insert the data into the lookup table.
+- Click **Add Record** (122 - Spine X-ray) to insert the data into the lookup table.
 
 **Screenshot 1: Adding Records**  
-![Add Records Screenshot](Images/AddRecord1.png)
+![Add Records Screenshot](Images/AddRecord1.PNG)
 
-![Add Records Screenshot](Images/AddRecord2.png)
+![Add Records Screenshot](Images/AddRecord2.PNG)
 
 ####  Updating Records
 -	Select an existing record and modify the key-value pair as needed.
   
-![Update Records Screenshot](Images/UpdateRecord1.png)
+![Update Records Screenshot](Images/UpdateRecord1.PNG)
 
 -  Click Update to save changes. 
-Example: Updating "CT Scan Neck" to "CT Scan Head".
+Example: Updating "122 - Spine X-ray" to "Abdominal X-ray (AXR)".
 
-![Update Records Screenshot](Images/UpdateRecord2.png)
+![Update Records Screenshot](Images/UpdateRecord2.PNG)
 
 #### Deleting Records
--	Select the record to delete (166 – MRI)
+-	Select the record to delete (144 – MRI)
 
-![Delete Records Screenshot](Images/DeleteRecord1.png)
+![Delete Records Screenshot](Images/DeleteRecord1.PNG)
 
 -	Click the Delete button to remove the record from the lookup table.
-Example: Deleting "166 - MRI".
+Example: Deleting "144 - MRI".
 
-![Delete Records Screenshot](Images/DeleteRecord2.png)
+![Delete Records Screenshot](Images/DeleteRecord2.PNG)
 
+- Example of Serch Record
+![Search Records Screenshot](Images/SearchRecord.PNG)
 
+#### 🔍 Check Data Lookup Table in HealthConnect
 
+To verify the records in your lookup table:
+
+1. Navigate to **Interoperability → Configure → Data Lookup Tables**.  
+2. Click **Open** to view the contents of your lookup table.
+
+![View Records Screenshot](Images/ViewRecordDT.png)
+
+### 💾 Code / Resources
+
+- The full source code is available on [GitHub](#) for download and reference.
+
+### 🏁 Conclusion
+
+This reusable web interface and class provide a simple yet effective way to manage **Data Lookup Tables** in **HealthConnect**, enhancing both efficiency and flexibility. By empowering end-users with controlled access, it reduces the administrative overhead traditionally associated with lookup table maintenance.
+
+💬 **Thank you for using this solution!**  
+If you have any questions or require further assistance, please feel free to reach out.
