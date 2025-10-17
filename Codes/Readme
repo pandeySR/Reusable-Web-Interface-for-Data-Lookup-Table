@@ -1,1 +1,8 @@
+This code package includes two files.
+
+The first file, Cache_Class_Method_for_DataLookupTable.txt, contains the cache class method. Copy and paste its contents into your class.
+
+The second file, DataLookup_Cache_CSP_WebApp_Code.txt, contains the CSP web page code. Copy all its contents and paste them into your cache CSP page.
+
+Then, update your CSP page according to the instructions provided in the README file (README.md). Finally, compile both files and use them.
 
