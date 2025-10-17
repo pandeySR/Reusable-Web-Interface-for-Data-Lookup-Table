@@ -39,7 +39,7 @@ Before compiling and running:
 
 - Replace the placeholder for your **Data Lookup Table** name on the web page (indicated by the red box in the screenshot below) with your actual lookup table name.
 
-![datalookup](Images/DataLookup.png)
+![Datalookup](Images/DataLookup.png)
 
 - Ensure the class name in the code matches your custom class name.
 
@@ -57,9 +57,9 @@ Before compiling and running:
 - Click **Add Record** to insert the data into the lookup table.
 
 **Screenshot 1: Adding Records**  
-![Adding Records Screenshot](Images/AddRecord1.png)
+![Add Records Screenshot](Images/AddRecord1.png)
 
-![Adding Records Screenshot](Images/AddRecord2.png)
+![Add Records Screenshot](Images/AddRecord2.png)
 
 ####  Updating Records
 -	Select an existing record and modify the key-value pair as needed.
