@@ -38,5 +38,9 @@ The setup process is straightforward:
 Before compiling and running:
 
 - Replace the placeholder for your **Data Lookup Table** name on the web page (indicated by the red box in the screenshot below) with your actual lookup table name.
-- 
 
+![datalookup](Images/DataLookup.png)
+
+- Ensure the class name in the code matches your custom class name.
+
+  ![ClassDtlookup](Images/ClassDtLookup.png)
