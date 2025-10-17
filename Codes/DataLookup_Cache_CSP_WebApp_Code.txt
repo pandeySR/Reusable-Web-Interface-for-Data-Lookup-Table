@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--
+This web application is designed and developed to insert, update, and delete records (key–value pairs) in the Data Lookup Table through a web interface.
+Author: Sanjib Pandey
+Date: 16/10/2025
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Sanjib Pandey" />
+  <title>YOUR TITLE : Data Lookup Table - Data Record </title>
+  <!-- Bootstrap CSS CDN, jQuery, Datatable -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" />
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+  <style>
+    h2 {
+      text-align: center;
+      color: #fff;
+      background-color: #00b300;
+      padding: 15px 10px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      margin-top: 0px;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+      padding-top: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 1100px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      margin-top: 5px;
+      width: 100%;
+    }
+ 
+    .table-scroll-vertical
+    {
+ 	 max-height: 450px;
+ 	 overflow-y: auto;
+  	 border: 1px solid #dee2e6;
+  	 border-radius: 5px;
+  	 margin-top: 0; 
+	}
+	
+	.small-italic 
+	{
+  	 font-size: 0.85em; 
+  	 font-style: italic; 
+  	 color: #C0C0C0; 
+	}
+	
+	.dataTables_filter label 
+	{
+  	 font-weight: bold;
+  	 color: #333;
+  	 color: red;
+  	 float: left;
+	}
+
+	.dataTables_filter input
+	{
+  	 border: 2px solid #993399;
+  	 border-radius: 5px;
+  	 padding: 6px 10px;
+  	 outline: none;
+   	 width: 250px;
+	}
+	
+	.page-footer
+	{
+  	 text-align: center;
+  	 padding: 10px 5px;
+  	 font-size: 0.95rem;
+ 	 color: #809fff;
+ 	 background-color: #f8f9fa;
+  	 border-top: 1px solid #993399;
+  	 margin-top: 5px;
+	}
+  </style>
+  <style>
+  @keyframes blink
+  {
+    50%
+    {
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<div style="overflow: hidden;">
+  <div style="float: left; font-size: smaller; font-weight: bold;color:#b3ffff;animation: blink 1s infinite;">
+    Environment : DEV
+  </div>
+  <h2 style="text-align: center; margin: 0;">
+    Your Organization Name or Company Name<br>
+    <span style="font-size: smaller; color: yellow;text-align: center;">Data Lookup Table</span>
+  </h2>
+</div> 
+ <form id="recordForm" class="form-horizontal" action="" method="POST">
+ 	<div class="form-group">
+        <!--for any other information if you want> -->
+       </div>
+      <div class="row mb-3">
+        <label for="key" class="col-sm-3 col-form-label fw-bold">Key :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="key" name="key" placeholder="Enter the Key data !" required />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="kvalue" class="col-sm-3 col-form-label fw-bold">Key Pair Value</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="kvalue" name="kvalue" placeholder="Enter the key paris value !" required />
+        </div>
+      </div>
+	<div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+		<p class="mb-2 mb-md-0 text-primary">
+    		<i>Click the edit icon to modify a record, then press "Update" to save. To delete, press the "Delete" button.</i> 
+  		</p> 
+  		
+	<div class="d-flex flex-wrap justify-content-end">
+		<button class="btn btn-success me-2" id="Add" type="submit" name="Add">
+			<i class="fa fa-plus me-1" style="font-size:18px; color:white;"></i> Add Record
+		</button>
+	
+		<button class="btn btn-primary me-2" type="submit" name="Update">
+			<i class="fa fa-edit me-1" style="font-size:18px;"></i> Update
+    	</button>
+
+		<button class="btn btn-danger me-2" id="Delete" type="submit" name="Delete">
+			<i class="fa fa-remove me-1" style="font-size:18px;"></i> Delete
+		</button>
+		
+		<button class="btn btn-info" id="Cancel" type="submit" name="Cancel">
+  			<i class="glyphicon glyphicon-refresh" style="font-size:18px;"></i> Cancel
+		</button>
+  	   </div> 
+    </div>
+    <div></div>
+	</form>
+<script language=SQL name="query">
+  SELECT KeyName, DataValue FROM Ens_Util.LookupTable WHERE TableName='Data Lookup Table Example'
+</script>
+
+<script language=cache runat=server>
+ S myKeyName=$Get(%request.Data("key",1))
+ S myKeyValue=$Get(%request.Data("kvalue",1))
+ S myDtName="Data Lookup Table Example"
+ I ($Data(%request.Data("Add",1)))
+ {
+	I ((myKeyName '="") && (myKeyValue '="") && (myDtName '=""))
+	{	
+		I ##Class(SANJIB.DataLookup.Methods).ChkLookupKeyValue(myDtName,myKeyName)="F"
+		{
+			D ##Class(SANJIB.DataLookup.Methods).InsertLookUpValues(myDtName,myKeyName,myKeyValue)
+		}
+		else
+		{	W "The key has already been inserted.." &html<<div style=color:red>#(myKeyName)#</div>> }
+		
+	}
+ }
+ I ($Data(%request.Data("Update",1)))
+ {
+	I ((myKeyName '="") && (myKeyValue '="") && (myDtName '=""))
+	{
+		D ##Class(SANJIB.DataLookup.Methods).UpdateLookUpValues(myDtName,myKeyName,myKeyValue)
+	}
+ }
+ I ($Data(%request.Data("Delete",1)))
+ {
+	 I ((myKeyName '="") && (myKeyValue '="") && (myDtName '=""))
+	 {
+		D ##Class(SANJIB.DataLookup.Methods).DeleteLookUpValues(myDtName,myKeyName)		
+	 }
+ }	
+</script>
+ <div class="table-responsive table-scroll-vertical"> 
+    <table class="table table-bordered border-primary table table-hover mt-2" id="dataTable" style="min-width: 1000px;">
+      <thead class="table-warning">
+        <tr>
+          <th>Key Data</th>
+          <th>Key Pair Value</th>
+          <th style="text-align:center;">Actions</th> 
+        </tr>
+      </thead>
+      <tbody id="tableRecordset">
+ 		</tr>
+ 		<csp:while counter=myQueryRow condition=query.Next()>
+ 			<tr class='#($S(myQueryRow#2:"LightRow",1:"LightRow"))#'>
+  				<csp:while counter=myQueryColumn condition="(myQueryColumn<query.GetColumnCount())">
+      				<td style="background-color:#e6ffff">#(query.GetData(myQueryColumn))#</td>
+  						</csp:while>
+ 							<td style="text-align:center;">
+          						<button class="btn btn-sm btn-danger me-2 edit-delete-btn" data-id="#(query.GetData(0))#">
+    								<i class="fa fa-edit"></i>
+    								<i class="fa fa-trash"></i>
+  								</button>
+        					</td> 
+ 						</tr>
+ 				</csp:while>
+      		</tbody>
+       </table>
+    </div>
+  </div>
+  
+<script language=javascript>
+  document.addEventListener('DOMContentLoaded', () => 
+  {
+    const editButtons = document.querySelectorAll('.edit-delete-btn');
+    editButtons.forEach(button =>
+    {
+      button.addEventListener('click', () => 
+      {
+        const row = button.closest('tr');
+        document.getElementById("Add").disabled=true
+        const kID=row.cells[0].textContent.trim();
+        const pairVal = row.cells[1].textContent.trim();
+        document.getElementById('key').value = kID;
+        document.getElementById('kvalue').value = pairVal;
+        document.getElementById('key').focus();
+      });
+    });
+  });
+</script>
+ <script language=javascript>
+    document.getElementById('Cancel').addEventListener('click', () => 
+    {
+    	event.preventDefault();
+    	document.getElementById('recordForm').reset();
+    });
+</script>
+
+<script language=javascript>
+  $(document).ready(function()
+  {
+    $('#dataTable').DataTable(
+    {
+      "order": [[0, "asc"]],
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "info": true,
+      "autoWidth": false
+    });
+  		$('#dataTable_filter input').css('font-size', '12px').attr('placeholder', 'Type to search..?');
+  });
+</script>
+
+</body> 
+
+<script language="javascript">
+  document.addEventListener('DOMContentLoaded', () =>
+  {
+  	const updateBtn = document.querySelector('button[name="Update"]');
+  	const deleteBtn = document.querySelector('button[name="Delete"]');
+  	const addBtn = document.getElementById('Add');
+  	const cancelBtn = document.getElementById('Cancel');
+  	updateBtn.style.display = 'none';
+  	deleteBtn.style.display = 'none';
+  	addBtn.style.visibility = 'visible';  
+  	addBtn.disabled = false;
+  document.querySelectorAll('.edit-delete-btn').forEach(editBtn =>
+  {
+    editBtn.addEventListener('click', () =>
+    {
+      updateBtn.style.display = 'inline-block';
+      deleteBtn.style.display = 'inline-block';
+      addBtn.style.display = 'none';
+      addBtn.style.visibility = 'visible'; 
+      addBtn.disabled = true;
+    });
+  });
+
+  updateBtn.addEventListener('click', (e) =>
+  {
+    updateBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
+    addBtn.style.display = 'inline-block';
+    addBtn.style.visibility = 'visible';
+    addBtn.disabled = false;
+  });
+
+  deleteBtn.addEventListener('click', (e) =>
+  {
+    updateBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
+    addBtn.style.display = 'inline-block';
+    addBtn.style.visibility = 'visible';
+    addBtn.disabled = false;
+  });
+
+  cancelBtn.addEventListener('click', (e) =>
+  {
+    e.preventDefault();  
+    document.getElementById('recordForm').reset();
+    updateBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
+    addBtn.style.display = 'inline-block';
+    addBtn.style.visibility = 'visible';  
+    addBtn.disabled = false;              
+  });
+});
+</script>
+
+<footer class="page-footer">
+  <a href="https://sanjibpandey.wixsite.com/pandey/" target="_blank" rel="noopener noreferrer" style="color: #6c757d; text-decoration: none;"> https://sanjibpandey.wixsite.com/pandey/</a>
+</footer>
+</html>

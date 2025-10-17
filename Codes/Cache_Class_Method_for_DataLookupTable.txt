@@ -1,0 +1,119 @@
+/// This class is desinged and created to insert, update, delete records (key & value)
+/// in to  Data Lookup table from web application. 
+/// Later, that can be used in rules or data transformations using the Lookup function.
+/// Auhor : Sanjib Pandey
+/// Date : 16/10/2025
+Class SANJIB.DataLookup.Methods Extends %Persistent
+{
+
+/// This method inserts a value into the lookup table. The required parameters are:
+/// dtTableName : The name of your data lookup table
+/// keyData     : The key
+/// keyValue    : The value (key-pair value)	
+ClassMethod InsertLookUpValues(dtTable As %String = "", keyData As %String = "", keyValue As %String = "") As %Status
+{
+	S tSC = $$$OK
+	Try
+	{
+		I (dtTable '="") && (keyData '="") && (keyValue '="")
+		{
+			S mySQLStatement = "INSERT into Ens_Util.LookupTable (KeyName,DataValue,TableName) values ('"_keyData_"','"_keyValue_"','"_dtTable_"')"
+			S myRecordSet = ##class(%SQL.Statement).%ExecDirect(,mySQLStatement)
+			S tSC={"InserRecorded":(myRecordSet)}
+		}
+	}
+	Catch (Exception)
+	{
+		Throw Exception	
+	}
+	Q tSC
+}
+
+/// This method checks whether the value already exists in the data lookup table.
+ClassMethod ChkLookupKeyValue(dtTable As %String, keyData As %String) As %Status
+{
+	S tSC = $$$OK
+	Try
+	{
+		I (dtTable '="") && (keyData '="")
+		{
+			S mySQLStatement="SELECT KeyName FROM Ens_Util.LookupTable WHERE TableName='"_dtTable_"' and KeyName='"_keyData_"'"
+			S myRecordSet = ##class(%SQL.Statement).%ExecDirect(,mySQLStatement)
+			D myRecordSet.%Next()
+			I (myRecordSet.%SQLCODE=0)
+			{ 
+				S tSC= "T"
+			}
+			else 
+			{
+				S tSC="F"
+			}
+		}
+		else
+		{
+			S tSC= "Invalid Parameters - missing table name or key !"
+		}
+	}
+	Catch (Exception)
+	{
+		Throw Exception	
+	}
+	Q tSC
+}
+
+/// This method updates only the key value in the data lookup table.
+ClassMethod UpdateLookUpValues(dtTable As %String = "", keyData As %String = "", keyValue As %String = "") As %Status
+{
+	S tSC = $$$OK
+	Try
+	{
+		I (dtTable '="") && (keyData '="") && (keyValue '="")
+		{
+			S mySQLStatement = "UPDATE Ens_Util.LookupTable SET DataValue='"_keyValue_"' WHERE TableName='"_dtTable_"' AND KeyName='"_keyData_"'"
+			S myRecordSet = ##class(%SQL.Statement).%ExecDirect(,mySQLStatement)
+			S tSC={"Updated Record":(myRecordSet)}
+		}
+	}
+	Catch (Exception)
+	{
+		Throw Exception	
+	}
+	Q tSC
+}
+
+/// This method is used to delete a record from the data lookup table.
+ClassMethod DeleteLookUpValues(dtTable As %String, keyData As %String) As %Status
+{
+	S tSC = $$$OK
+	Try
+	{
+		I (dtTable '="") && (keyData '="") 
+		{
+			S mySQLStatement = "DELETE FROM Ens_Util.LookupTable WHERE  TableName='"_dtTable_"' And KeyName='"_keyData_"'"
+			S myRecordSet = ##class(%SQL.Statement).%ExecDirect(,mySQLStatement)
+			S tSC={"Deleted Record":(myRecordSet)}
+		}
+	}
+	Catch (Exception)
+	{
+		Throw Exception	
+	}
+	Q tSC
+}
+
+Storage Default
+{
+<Data name="MethodsDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+</Data>
+<DataLocation>^SANJIB.DataLookup.MethodsD</DataLocation>
+<DefaultData>MethodsDefaultData</DefaultData>
+<IdLocation>^SANJIB.DataLookup.MethodsD</IdLocation>
+<IndexLocation>^SANJIB.DataLookup.MethodsI</IndexLocation>
+<StreamLocation>^SANJIB.DataLookup.MethodsS</StreamLocation>
+<Type>%Storage.Persistent</Type>
+}
+
+}
