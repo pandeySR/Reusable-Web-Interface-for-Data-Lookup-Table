@@ -91,7 +91,7 @@ To verify the records in your lookup table:
 1. Navigate to **Interoperability → Configure → Data Lookup Tables**.  
 2. Click **Open** to view the contents of your lookup table.
 
-
+![View Records Screenshot](Images/ViewRecordDT.png)
 
 ### 💾 Code / Resources
 
